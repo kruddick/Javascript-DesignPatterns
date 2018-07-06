@@ -1,3 +1,5 @@
+// defines the real object for which service is requested
+
 function GeoCoder() {
   this.getLatLng = function(address) {
     if (address === "Amsterdam") {
@@ -13,6 +15,12 @@ function GeoCoder() {
     }
   };
 }
+
+/*
+provides an interface similar to the real object
+maintains a reference that lets the proxy access the real object
+handles requests and forwards these to the real object
+*/
 
 function GeoProxy() {
   var geocoder = new GeoCoder();
@@ -52,6 +60,7 @@ var log = (function() {
   };
 })();
 
+// the run() function calls Proxy to request an operation
 function run() {
   var geo = new GeoProxy();
 
